@@ -6,7 +6,7 @@ const char* source =
 "__kernel void kernel(__global const float* input, __global float* result, const int n) { \n"\
 " int id = get_global_id(0);\n"\
 " if (id < n) {\n"\
-"   float x = input[i];\n"\
+"   float x = input[id];\n"\
 "   float arg1 = 0.79788458347320556640625f * (x + 0.044715f * x * x * x);\n"\
 "   float tmp;\n"\
 "   if (x <= 0.0f) tmp = tanh(arg1);\n"\

@@ -19,7 +19,7 @@ const char* source =
 "     tmp = tmp / (10395.0f + x_2 * (4725.0f + x_2 * (210.0f + x_2)));\n"\
 "     }\n"\
 "   }\n"\
-"  result[i] = 0.5f * x * (1.0f + tmp);\n"\
+"  result[id] = 0.5f * x * (1.0f + tmp);\n"\
 "  }\n"\
 "}\n";
 

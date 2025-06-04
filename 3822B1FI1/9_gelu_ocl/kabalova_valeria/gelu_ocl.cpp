@@ -3,7 +3,7 @@
 #include <cstring>
 
 const char* source = R"(
-  __kernel void kernel(__global const float* input, __global float* result, const int n) { 
+  __kernel void geluKernel(__global const float* input, __global float* result, const int n) { 
     int id = get_global_id(0);
     if (id < n) {
     float x = input[id];
@@ -45,11 +45,11 @@ std::vector<float> GeluOCL(const std::vector<float>& input) {
 
   cl_program program = clCreateProgramWithSource(context, 1, &source, nullptr, nullptr);
   clBuildProgram(program, 1, &device, nullptr, nullptr, nullptr);
-  cl_kernel kernel = clCreateKernel(program, "kernel", nullptr);
+  cl_kernel clkernel = clCreateKernel(program, "geluKernel", nullptr);
 
-  clSetKernelArg(kernel, 0, sizeof(cl_mem), &in);
-  clSetKernelArg(kernel, 1, sizeof(cl_mem), &out);
-  clSetKernelArg(kernel, 2, sizeof(int), &size);
+  clSetKernelArg(clkernel, 0, sizeof(cl_mem), &in);
+  clSetKernelArg(clkernel, 1, sizeof(cl_mem), &out);
+  clSetKernelArg(clkernel, 2, sizeof(int), &size);
 
   size_t localSize = 256;
   size_t globalSize = (size + localSize - 1) / localSize * localSize;

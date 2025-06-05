@@ -61,7 +61,7 @@ std::vector<float> GeluOCL(const std::vector<float>& input) {
   clReleaseMemObject(in);
   clReleaseMemObject(out);
   clReleaseProgram(program);
-  clReleaseKernel(kernel);
+  clReleaseKernel(clkernel);
   clReleaseCommandQueue(queue);
   clReleaseContext(context);
 

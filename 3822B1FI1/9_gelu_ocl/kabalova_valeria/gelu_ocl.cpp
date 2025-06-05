@@ -6,18 +6,8 @@ const char* source = R"(
   __kernel void geluKernel(__global const float* input, __global float* result, const int n) { 
     int id = get_global_id(0);
     if (id < n) {
-    float x = input[id];
-    float arg1 = 0.79788458347320556640625f * (x + 0.044715f * x * x * x);
-    float tmp;
-    if (x <= 0.0f) tmp = tanh(arg1);
-    else if(x < 0.0001f) tmp = x;
-    else if (arg1 >= 4.1f) tmp = 1.0f;
-    else {
-      float x_2 = x * x;
-      tmp = x * (10395.0f + x_2 * (1260.0f + x_2 * 21.0f));
-      tmp = tmp / (10395.0f + x_2 * (4725.0f + x_2 * (210.0f + x_2)));
-    }
-    result[id] = 0.5f * x * (1.0f + tmp);
+      float x = input[idx];
+      output[id] = 0.5f * x * (1.0f + tanh(0.797884f * (x + 0.044715f * (x * x * x))));
     }
   }
 )";

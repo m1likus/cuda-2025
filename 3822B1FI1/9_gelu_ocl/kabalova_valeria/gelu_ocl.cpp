@@ -7,7 +7,7 @@ const char* source = R"(
     int id = get_global_id(0);
     if (id < n) {
       float x = input[id];
-      output[id] = 0.5f * x * (1.0f + tanh(0.797884f * (x + 0.044715f * (x * x * x))));
+      result[id] = 0.5f * x * (1.0f + tanh(0.797884f * (x + 0.044715f * (x * x * x))));
     }
   }
 )";
